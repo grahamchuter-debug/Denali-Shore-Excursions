@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Denali Site — Image Review</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      font-family: system-ui, sans-serif;
+      margin: 0;
+      padding: 1.5rem;
+      background: #f8fafc;
+      color: #0f172a;
+    }
+    h1 { margin: 0 0 0.25rem; font-size: 1.5rem; }
+    p.lead { margin: 0 0 1.5rem; color: #64748b; font-size: 0.9rem; }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1.25rem;
+    }
+    .card {
+      background: white;
+      border: 1px solid #e2e8f0;
+      border-radius: 12px;
+      overflow: hidden;
+    }
+    .card img {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      object-fit: cover;
+      display: block;
+      background: #e2e8f0;
+    }
+    .card-body { padding: 0.875rem 1rem 1rem; }
+    .card-body h2 {
+      margin: 0 0 0.35rem;
+      font-size: 0.95rem;
+      font-weight: 600;
+    }
+    .card-body .file {
+      font-family: ui-monospace, monospace;
+      font-size: 0.75rem;
+      color: #0369a1;
+      margin-bottom: 0.35rem;
+    }
+    .card-body .used {
+      font-size: 0.8rem;
+      color: #64748b;
+      line-height: 1.45;
+    }
+    .badge {
+      display: inline-block;
+      margin-top: 0.5rem;
+      padding: 0.15rem 0.5rem;
+      border-radius: 999px;
+      font-size: 0.7rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+    .badge--hero { background: #dcfce7; color: #166534; }
+    .badge--placeholder { background: #fef3c7; color: #92400e; }
+  </style>
+</head>
+<body>
+  <h1>Denali Shore Excursions — Image Review</h1>
+  <p class="lead">Check each image below. Placeholders marked in amber should be replaced with Denali-specific photography.</p>
+  <div class="grid" id="grid"></div>
+  <script>
+    const images = [
+      { file: "hero-denali.png", used: "Homepage hero, OG image", hero: true },
+      { file: "best-denali-excursions.png", used: "Best Denali Excursions page" },
+      { file: "denali-national-park.png", used: "Denali National Park Guide" },
+      { file: "denali-cruise-passengers.png", used: "Denali For Cruise Passengers" },
+      { file: "anchorage-to-denali.png", used: "Anchorage To Denali Guide" },
+      { file: "fairbanks-to-denali.png", used: "Fairbanks To Denali Guide" },
+      { file: "best-time.png", used: "Best Time To Visit Denali" },
+      { file: "denali-wildlife.png", used: "Denali Wildlife Guide" },
+      { file: "denali-flightseeing.png", used: "Denali Flightseeing Guide" },
+      { file: "denali-train.png", used: "Denali Train Guide" },
+      { file: "intro.png", used: "Homepage intro section" },
+      { file: "faq.png", used: "Denali FAQ" },
+      { file: "planner.png", used: "Cruise Tour Planner" },
+      { file: "enquire.png", used: "Enquire page" },
+      { file: "national-park-tour.png", used: "Denali National Park Tour excursion" },
+      { file: "wildlife-tour.png", used: "Denali Wildlife Tour excursion" },
+      { file: "tundra-tour.png", used: "Tundra Wilderness Tour excursion" },
+      { file: "flightseeing-tour.png", used: "Denali Flightseeing Tour excursion" },
+      { file: "atv-tour.png", used: "Denali ATV Tour excursion" },
+      { file: "rafting-tour.png", used: "Denali Rafting Tour excursion" },
+      { file: "zipline-tour.png", used: "Denali Zipline Tour excursion" },
+      { file: "hiking-tour.png", used: "Hiking / Nature Walk excursion" },
+      { file: "anchorage-transfer.png", used: "Anchorage Transfer with Sightseeing excursion" },
+      { file: "fairbanks-transfer.png", used: "Fairbanks Transfer with Sightseeing excursion" },
+    ];
+    const grid = document.getElementById("grid");
+    grid.innerHTML = images.map(({ file, used, hero }) => `
+      <article class="card">
+        <img src="/images/${file}" alt="${used}" loading="lazy" />
+        <div class="card-body">
+          <h2>${used}</h2>
+          <div class="file">${file}</div>
+          <div class="used">Path: /images/${file}</div>
+          <span class="badge ${hero ? "badge--hero" : "badge--placeholder"}">${hero ? "Hero — updated" : "Placeholder"}</span>
+        </div>
+      </article>
+    `).join("");
+  </script>
+</body>
+</html>
